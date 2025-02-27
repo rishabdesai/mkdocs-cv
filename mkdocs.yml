@@ -1,0 +1,10 @@
+site_name: "Rishabh Desai - CV"
+theme:
+  name: material
+  features:
+    - navigation.tabs: false
+    - navigation.top: false
+extra_css:
+  - styles.css
+
+

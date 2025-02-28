@@ -5,5 +5,7 @@ theme:
     - navigation.tabs: false
     - navigation.top: false
 
+extra_css:
+  - overrides/extra.css
 
 

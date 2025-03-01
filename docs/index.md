@@ -75,11 +75,10 @@ While these roles helped develop analytical and structured problem-solving skill
 ## Skills & Tools
 
 - 💻 Technical Support & Troubleshooting
-- 📊 Data Analysis & Reporting
-- 📝 Documentation & Process Documentation
+- 📊 Data Analysis, Dashboard Creation & Report Generation
+- 📝 Documentation
 - 📚 Software Training & User Onboarding
 - 🔧 App Query Handling & Issue Resolution
-- 📈 Dashboard Creation & Report Generation
 
 ---
 

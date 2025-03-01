@@ -44,8 +44,8 @@ Having transitioned from civil engineering to IT, I bring a structured approach 
 ### Product Specialist – FlexPLM Support
 **PTC Software (India) Pvt Ltd** | *April 2019 – June 2019* | Pune, India
 
-- Provided technical support for FlexPLM, resolving software-related issues.
-- Assisted clients in configuring and optimizing product lifecycle management workflows.
+- Provided support for FlexPLM and resolved software issues.
+- Assisted clients with technical problems.
 
 ### Quantity Surveying & Civil Engineering Roles (2011 – 2018)
 Held various positions in quantity surveying and construction, working with companies like Gleeds-Hooloomann Consulting, Langdon & Seah, and WTP India Pvt Ltd.

@@ -22,7 +22,7 @@ Having transitioned from civil engineering to IT, I bring a structured approach 
 **Nirmay Infotech (India) Pvt Ltd** | *Nov 2020 – Present* | Vadodara, India
 
 - **Technical Support & Query Resolution**  
-  - Provide technical assistance to end-users of CrystalEMR, an electronic medical records (EMR) software.
+  - Provide technical assistance to end-users of **CrystalEMR**, an electronic medical records (EMR) software.
   - Diagnose and troubleshoot app-related issues, ensuring timely resolution.
   - Collaborate with the development team to escalate and resolve critical bugs.
 

@@ -1,11 +1,14 @@
-site_name: "Rishabh Desai - CV"
+site_name: "Rishabh Desai"
 theme:
   name: material
+  palette:
+    primary: white
   features:
     - navigation.tabs: false
     - navigation.top: false
+  favicon: assets/images/favicon/favicon-32x32.png
 
-extra_css:
-  - overrides/extra.css
+# extra_css:
+#   - overrides/extra.css
 
 

@@ -11,4 +11,9 @@ theme:
 # extra_css:
 #   - overrides/extra.css
 
+extra:
+  socials:
+    - icon: simple/linkedin
+      link: https://www.linkedin.com/in/rishabhdesai/
+
 

@@ -1,0 +1,23 @@
+site_name: Rishabh Desai
+theme:
+  name: material
+  palette:
+    primary: white
+  features:
+    - navigation.tabs: false
+    - navigation.top: false
+    - navigation.footer
+  favicon: assets/images/favicon/favicon-32x32.png
+
+# extra_css:
+#   - overrides/extra.css
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/rishabhdesai/
+    - icon: fontawesome/brands/github
+      link: https://github.com/rishabdesai
+
+copyright: Copyright &copy 2025 Rishabh Desai

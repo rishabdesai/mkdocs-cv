@@ -1,6 +1,7 @@
 # Git Commands
 
-[Git flow]!(/root/mydocs/docs/assets/images/img_cheatsheet/git_flow.png)
+![Git Flow](https://raw.githubusercontent.com/rishabdesai/mkdocs-cv/main/docs/assets/images/img_cheatsheet/git_flow.png)
+
 
 ```git
 1.Make current folder a empty git repository :

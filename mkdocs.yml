@@ -4,14 +4,30 @@ theme:
   palette:
     primary: white
   features:
-    - navigation.tabs: false
-    - navigation.top: false
+    - navigation.tabs
+    - navigation.top
     - navigation.footer
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.instant
+    - navigation.tracking
+    - header.autohide    
   favicon: assets/images/favicon/favicon-32x32.png
 
 # extra_css:
 #   - overrides/extra.css
 
+nav:
+  - Home: 
+    - Home: index.md
+  - CheatSheets:
+    - Linux OS: devtools/cheatsheet/linux.md
+    - Git: devtools/cheatsheet/git.md
+    - Docker: devtools/cheatsheet/docker.md
+    
+  - Tools:
+    - Useful Tools:  devtools/tools/usefultools.md
 
 extra:
   social:

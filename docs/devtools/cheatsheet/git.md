@@ -126,7 +126,7 @@ modes:
 3. –hard : To discard everything from local repository, staging area and working library/ folder/ directory.
 
 Discard changes in Working/Staging or Local repo
-
+```
 | Mode   | working folder | Staging area | Local Repo |
 | ------ | -------------- | ------------ | ---------- |
 | –soft  | No             | No           | Yes        |
@@ -134,7 +134,6 @@ Discard changes in Working/Staging or Local repo
 | –hard  | Yes            | Yes          | Yes        |
 
 
-```
 
 
 ```
@@ -190,13 +189,12 @@ From child branch:
 git rebase master
 From Master branch:
 git rebase <nameOfChileBranch>
-
+```
 | merge                                                                  | rebase                                                                                                |
 | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | It is easy to track parent(master) and child commits using commit IDs. | After rebase, the child commits get new ID, hence not possible to see changed done in child branches. |
 | new merge commit created by git to resolve the conflicts               | no conflict created                                                                                   |
 
-```
 
 
 ```

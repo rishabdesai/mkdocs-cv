@@ -299,3 +299,15 @@ Creating a script
 2) Make script executable with chmod +x test.sh
 3) To execute script ./test.sh
 ```
+
+
+```sh
+Redirection
+Redirection can be done for input and output
+ 
+<       # input redirection
+> or >> # output redirection
+2>      # error redirection
+
+
+```

@@ -10,9 +10,10 @@ hide:
 
 ## Professional Summary
 
-Dedicated IT Technical Support Specialist with a background in app training, technical support, report generation, and documentation. Currently supporting CrystalEMR users by resolving queries, conducting training, and ensuring smooth functionality. Strong analytical and problem-solving skills, with a keen interest in process improvement and IT-driven solutions.
+Dedicated IT Technical Support Specialist with experience in application training, **technical support, report generation, and documentation**. Currently providing support for CrystalEMR users by resolving issues, delivering user training, and maintaining system functionality. Possesses strong analytical and problem-solving abilities, with a growing interest in **data analysis, cloud computing, and self-hosted server environments**.
 
-Having transitioned from civil engineering to IT, I bring a structured approach to troubleshooting and documentation, leveraging my experience in data analysis, reporting, and system workflows.
+Having transitioned from civil engineering to IT, I bring a structured approach to troubleshooting and documentation, leveraging my experience in data analysis & report generation.
+
 
 ---
 

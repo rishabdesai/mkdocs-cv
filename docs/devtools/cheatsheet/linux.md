@@ -112,11 +112,13 @@ for ref : (https://crontab.guru/)
 ```sh
 Add new user
 
-Commands : useradd, adduser
+Command : useradd
 
 step 1) create user with new home directory
 useradd -m -u 111 -c "this is comment" -s /bin/bash tom
 useradd -m -s /bin/bash jerry
+useradd -d /home/user1 -m user1 -s /bin/bash
+
 
 -m option ensures that a new home directory will be created for user tom
 -c to enter comment
@@ -309,5 +311,27 @@ Redirection can be done for input and output
 > or >> # output redirection
 2>      # error redirection
 
+
+```
+
+```sh
+Archive
+
+tar = tape archieve
+
+tar -cvf  #c = create v = verbose, f = specify the archieve
+tar -xvf #x = extract
+tar -tvf #t = view/Display/table of contents
+
+Archive and compress
+
+tar -cvzf #archiving and compress (z option compresses and archives together)
+tar -xvzf #unarchive and compress
+tar -tvzf # display list
+
+gzip = to compress a file
+
+gzip -k file1.tar #compress
+gzip -d file1.tar.gz #uncompress
 
 ```

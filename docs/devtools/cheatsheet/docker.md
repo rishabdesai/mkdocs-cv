@@ -129,3 +129,54 @@
 > docker container run --name mysql -itd -p 3306:3306 -v myvolume:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root mysql
 
 ```
+### images
+```
+customize the docker image to run your application by using **Dockerfile**
+Dockerfile contains instructions/commands to create an image
+commands
+**FROM**
+used to select the base image
+
+**COPY**
+used to copy file/directory from local machine to the image
+e.g. COPY index.html /usr/local/apache2/htdocs/ will copy the index.html from local machine to the /usr/local/apache2/htdocs/ of image
+
+**WORKDIR**
+used to set the working directory
+if the directory does not exist, the image creates this new directory
+
+**RUN**
+used to run a command while building an image
+installing dependencies while building an image
+
+**CMD**
+used to run the command when container starts
+this must be the last command of your Dockerfile
+
+**EXPOSE**
+used to expose a port for consumer to access the application running inside the container
+```
+
+
+```bash
+
+# build a custom image
+# > docker image build -t <image name>:<image tag> <context>
+> docker image build -t myimage .
+
+# login with docker credentials
+> docker login -u <user name>
+
+# create a new tag for your image to push to the docker hub
+# > docker image tag <existing image> <docker username>/<image name>
+> docker image tag myserver rishabh/myserver
+
+# push the image to the docker hub
+# > docker image push <image name>
+> docker image push rishabh/myserver
+
+# to build the image for other CPU architecture use buildx command
+> docker buildx build --platform <platform> .
+
+
+```

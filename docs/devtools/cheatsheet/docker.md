@@ -180,3 +180,83 @@ used to expose a port for consumer to access the application running inside the 
 
 
 ```
+
+### swarm
+
+- swarm is nothing but cluster. a cluster created by docker to run multiple containers.
+- Docker Swarm is a container orchestration engine
+- It takes multiple Docker Engines running on different hosts and lets you use them together
+- The usage is simple: declare your applications as stacks of services, and let Docker handle the rest
+- It is secure by default
+-  It is built using Swarmkit
+
+```bash
+# check if the node is a part of any swarm
+> docker system info | grep Swarm
+
+# start initializing the swarm
+> docker swarm init
+
+# remove the current node from the cluster
+> docker swarm leave --force
+
+# generate a token to add a worker
+> docker swarm join-token worker
+
+```
+
+### node
+
+- node is a machine in a cluster. One of the node is manager and other are workers. Managers main job is to manage the workers.
+
+```bash
+# get the list of nodes
+> docker node ls
+
+# get the details of selected node
+> docker node inspect <node id>
+
+# remove a node from cluster
+> docker node rm <node id>
+
+# promote a worker to work as manager
+> docker node promote <worker node id>
+
+# demote a manager to work as worker
+> docker node demote <manager node id>
+
+
+```
+
+### service
+
+- A service is the defination of the tasks to execute on the manager or worker nodes.
+
+
+```bash
+
+# get the list of services
+> docker service ls
+
+# create a service
+# > docker service create --name <service name> <image name>
+> docker service create --name myservice httpd
+
+# create a service with required desired count
+# > docker service create --replicas <desired count> --name myservice httpd
+> docker service create --replicas 5 --name httpd -p 8080:80 httpd
+
+# get the list of containers created by the service
+> docker service ps <service name>
+
+# remove a service
+> docker service rm <service name>
+
+# to watch the current state of service
+> watch -n 1 docker container ls
+
+# horizontally scale the service
+# > docker service scale <service name>=<new desired count>
+> docker service scale myservice=10
+
+```

@@ -260,3 +260,49 @@ used to expose a port for consumer to access the application running inside the 
 > docker service scale myservice=10
 
 ```
+
+### Docker compose
+
+- used in development to deal with multiple microservices at a time
+- in-built in the docker engine
+- can be done using yaml configuration
+- does not support Swarm
+
+```bash
+
+
+# get the list of services managed by docker compose
+> docker compose ls
+
+# create images for all the services mentioned in the docker-compose file
+> docker compose build
+
+# create containers for all the services
+> docker compose up -d
+
+# delete all the containers for the services
+> docker compose down
+
+# delete all the images along with the containers for the services
+> docker compose down --rmi all
+
+
+```
+
+### Docker stack
+
+```bash
+
+# get the list of stacks
+> docker stack ls
+
+# deploy or create a new stack
+# > docker stack deploy --compose-file <stack yaml file> --detached=true <stack name>
+> docker stack deploy --compose-file docker-stack.yaml --detached=true myapp
+
+# remove a running stack
+# > docker stack rm <stack name>
+> docker stack rm myapp
+
+
+```

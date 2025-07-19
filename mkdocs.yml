@@ -27,6 +27,7 @@ nav:
     - Linux OS: devtools/cheatsheet/linux.md
     - Git: devtools/cheatsheet/git.md
     - Docker: devtools/cheatsheet/docker.md
+    - Kubernetes: devtools/cheatsheet/Kubernetes.md
     
   - Tools:
     - Useful Tools:  devtools/tools/usefultools.md

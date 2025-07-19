@@ -1,5 +1,24 @@
 # Kubernetes Commands
 
+```bash
+
+Kubernetes basic Objects
+
+- pod : Basic execution unit of a k8s applicaiton
+- service : An abstract way to expose an app runnig on set of pods as network service.
+- volume : A volume outlives any containers that run within the pod.
+- namespace : Namespaces provide a scope for names
+
+Kubernetes higher level abstractions
+
+- deployment
+- daemonset
+- statefulset
+- replicaset : Specified number of pod replicas are running at any one time. 
+- job
+
+```
+
 - Basic commands
 
 ### nodes

@@ -119,6 +119,9 @@ useradd -m -u 111 -c "this is comment" -s /bin/bash tom
 useradd -m -s /bin/bash jerry
 useradd -d /home/user1 -m user1 -s /bin/bash
 
+useradd -m -s /bin/bash user1
+useradd -m -s /bin/bash -G sudo user1
+
 
 -m option ensures that a new home directory will be created for user tom
 -c to enter comment

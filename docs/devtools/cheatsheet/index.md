@@ -21,31 +21,31 @@ Welcome to your personal **CheatSheet Knowledge Base** — quick access to your 
 - :material-linux: **Linux OS**
   
   Learn essential Linux commands and shell management basics.  
-  [:material-arrow-right: Open](devtools/cheatsheet/linux.md)
+  [:material-arrow-right: Open](/devtools/cheatsheet/linux/)
 
 - :material-git: **Git**
   
   Master Git workflows — commits, branching, merging, and more.  
-  [:material-arrow-right: Open](devtools/cheatsheet/git.md)
+  [:material-arrow-right: Open](/devtools/cheatsheet/git/)
 
 - :material-docker: **Docker**
   
   Container fundamentals, images, and Docker CLI quick commands.  
-  [:material-arrow-right: Open](devtools/cheatsheet/docker.md)
+  [:material-arrow-right: Open](/devtools/cheatsheet/docker/)
 
 - :material-kubernetes: **Kubernetes**
   
   Common `kubectl` commands, pod management, and deployment tips.  
-  [:material-arrow-right: Open](devtools/cheatsheet/Kubernetes.md)
+  [:material-arrow-right: Open](/devtools/cheatsheet/Kubernetes/)
 
 - :material-database: **SQL**
   
   Essential SQL syntax, PostgreSQL examples, and DDL/DML notes.  
-  [:material-arrow-right: Open](devtools/cheatsheet/sql.md)
+  [:material-arrow-right: Open](/devtools/cheatsheet/sql/)
 
 - :material-tools: **Useful Tools**
   
   Handy developer utilities and productivity resources.  
-  [:material-arrow-right: Open](devtools/tools/usefultools.md)
+  [:material-arrow-right: Open](/devtools/tools/usefultools/)
 
 </div>

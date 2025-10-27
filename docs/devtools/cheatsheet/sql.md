@@ -1,3 +1,6 @@
+[:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)
+
+
 # SQL
 
 - SQL = Structured Query Language
@@ -91,3 +94,4 @@ ORDER by deptno;
 
 
 
+[:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)

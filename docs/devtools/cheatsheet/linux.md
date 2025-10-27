@@ -1,3 +1,5 @@
+[:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)
+
 # Linux Commands
 
 Basic Linux commands.
@@ -338,3 +340,5 @@ gzip -k file1.tar #compress
 gzip -d file1.tar.gz #uncompress
 
 ```
+
+[:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)

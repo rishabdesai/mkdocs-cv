@@ -42,3 +42,5 @@
 
 [⬅ Back](sql.md#WHERE)
 
+[:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)
+

@@ -92,6 +92,44 @@ SELECT ename, sal, deptno from emp1
 ORDER by deptno;
 ```
 
+#### LIKE, BETWEEN, IN, NOT IN, ANY - special operator
+> % = is a symbol for wild card - Meaning any character & any number of characters.
+> _ = is used for pattern matching.
+```sql
+SELECT * from emp1
+WHERE ename like A%;
+
+```
+
+### UPDATE
+> Used to update existing record.
+```sql
+UPDATE emp1 
+set sal =10000
+where empno=1;
+```
+
+### UPDATE
+> Used to delete existing record.
+```sql
+DELETE from emp1
+where empno=1;
+```
+
+### DROP
+> Drop is a DDL command.
+> You cannot use WHERE clause with DROP.
+```sql
+DROP table emp1;
+```
+
+### Functions - concat, || , upper, lower, initcap
+
+
+### Functions - lpad, rpad, ltrim, rtirm, substr, transalte
+
+
+
 
 
 [:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)

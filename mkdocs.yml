@@ -5,32 +5,49 @@ theme:
   name: material
   palette:
     primary: white
+    scheme: slate
   features:
     - navigation.tabs
     - navigation.top
     - navigation.footer
     - navigation.sections
     - navigation.expand
-    - navigation.top
     - navigation.instant
     - navigation.tracking
-    - header.autohide    
+    - header.autohide
+
+    - content.code.copy
+    - content.tabs.link
+    - toc.integrate    
   favicon: assets/images/favicon/favicon-32x32.png
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - md_in_html
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  
 
 # extra_css:
 #   - overrides/extra.css
 
 nav:
-  - Home: 
-    - Home: index.md
+  - Home: index.md
   - CheatSheets:
-    - Linux OS: devtools/cheatsheet/linux.md
-    - Git: devtools/cheatsheet/git.md
-    - Docker: devtools/cheatsheet/docker.md
-    - Kubernetes: devtools/cheatsheet/Kubernetes.md
-    
+      - index: devtools/cheatsheet/index.md
+      - Linux OS: devtools/cheatsheet/linux.md
+      - Git: devtools/cheatsheet/git.md
+      - Docker: devtools/cheatsheet/docker.md
+      - Kubernetes: devtools/cheatsheet/Kubernetes.md
+      - SQL: devtools/cheatsheet/sql.md
   - Tools:
-    - Useful Tools:  devtools/tools/usefultools.md
+      - Useful Tools: devtools/tools/usefultools.md
+
+
 
 extra:
   social:

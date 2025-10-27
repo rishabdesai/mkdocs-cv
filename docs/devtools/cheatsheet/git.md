@@ -193,12 +193,14 @@ git rebase master
 From Master branch:
 git rebase <nameOfChileBranch>
 ```
-| merge                                                                  | rebase                                                                                                |
-| ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| It is easy to track parent(master) and child commits using commit IDs. | After rebase, the child commits get new ID, hence not possible to see changed done in child branches. |
-| new merge commit created by git to resolve the conflicts               | no conflict created                                                                                   |
 
+##### Merge:
+- It is easy to track parent (master) and child commits using commit IDs.
+- A new merge commit is created by Git to resolve conflicts.
 
+##### Rebase:
+- After rebase, the child commits get new IDs, making it harder to trace changes done in child branches.
+- No merge commit is created; history is rewritten instead.
 
 ```
 Status

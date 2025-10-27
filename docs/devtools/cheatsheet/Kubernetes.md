@@ -1,3 +1,5 @@
+[:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)
+
 # Kubernetes Commands
 
 ```bash
@@ -363,3 +365,6 @@ Kubernetes higher level abstractions
 > kubectl delete cronjob <cronjob name>
 
 ```
+
+
+[:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)

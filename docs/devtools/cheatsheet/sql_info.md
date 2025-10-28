@@ -44,3 +44,13 @@
 
 [:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)
 
+[⬅ Back](sql.md)
+
+## DAtabase : Sturctured collection of data that can be easily accessed and managed.
+
+## DBMS : Database Management System - A software taht use to store, manage and retrieve data efficiently and securely.
+
+## RDBMS : Relational Database Management System - Database System that stores data in structured tables.
+
+
+[⬅ Back](sql.md)

@@ -8,6 +8,7 @@
 ---
 - [Sub-divison in SQL](sql_info.md#Sub-divisions)
 - [Data types in SQL](sql_info.md#data-types)
+- [MS SQL specific commands](mssql.md)
 
 
 ## Basic Commands
@@ -40,7 +41,7 @@ insert into emp1 values (‘5′,’Ford’,4000.0,’Mumbai’,40);
 SELECT * FROM emp1;
 ```
 
-#### WHERE
+### WHERE
 > To restrict the rows
 ```sql
 SELECT * FROM emp1
@@ -48,7 +49,7 @@ where deptno =10;
 ```
 - [more about WHERE clause](sql_info.md#where-clause)
 
-#### Relational Operator
+### Relational Operator
 >
 ```sql
 < , > , <= , >=, <>, !=, = 
@@ -85,7 +86,7 @@ SELECT ename, sal, sal*12 as annual_sal from emp1;
 SELECT DISTINCT job FROM emp1;
 ```
 
-#### ORDER BY clause
+### ORDER BY clause
 > Order by clause is the last clause in the select statement.
 ```sql
 SELECT ename, sal, deptno from emp1
@@ -109,7 +110,7 @@ set sal =10000
 where empno=1;
 ```
 
-### UPDATE
+### DELETE
 > Used to delete existing record.
 ```sql
 DELETE from emp1

@@ -130,11 +130,12 @@ modes:
 
 Discard changes in Working/Staging or Local repo
 ```
-| Mode   | working folder | Staging area | Local Repo |
-| ------ | -------------- | ------------ | ---------- |
-| –soft  | No             | No           | Yes        |
-| –mixed | No             | Yes          | Yes        |
-| –hard  | Yes            | Yes          | Yes        |
+
+| Mode    | Working Folder | Staging Area | Local Repo |
+| ------- | -------------- | ------------ | ---------- |
+| --soft  | No             | No           | Yes        |
+| --mixed | No             | Yes          | Yes        |
+| --hard  | Yes            | Yes          | Yes        |
 
 
 

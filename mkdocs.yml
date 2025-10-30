@@ -3,9 +3,30 @@ site_name: Rishabh Desai
 
 theme:
   name: material
-  palette:
-    primary: white
-    scheme: slate
+   
+  palette: 
+    
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+      primary: black
+      accent: deep orange 
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: blue grey
+      accent: indigo  
+
+  features:
+    - navigation.tabs: false
+    - navigation.top: false
+    - navigation.footer
+
   features:
     - navigation.tabs
     - navigation.top

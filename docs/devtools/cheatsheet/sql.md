@@ -10,6 +10,7 @@
 - [Data types in SQL](sql_info.md#data-types)
 - [MS SQL specific commands](mssql.md)
 - [PostgreSQL specific commands](postgresql.md)
+- [SQL Advance Concepts &  Commands](sql_adv.md)
 
  
 ## Basic Commands

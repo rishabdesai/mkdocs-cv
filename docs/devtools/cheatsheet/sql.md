@@ -9,8 +9,9 @@
 - [Sub-divison in SQL](sql_info.md#Sub-divisions)
 - [Data types in SQL](sql_info.md#data-types)
 - [MS SQL specific commands](mssql.md)
+- [PostgreSQL specific commands](postgresql.md)
 
-
+ 
 ## Basic Commands
 
 ### CREATE

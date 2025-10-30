@@ -52,5 +52,6 @@
 
 ## RDBMS : Relational Database Management System - Database System that stores data in structured tables.
 
+## Joins : Join operation used to combine rows of two tables based on related common column between them.
 
 [⬅ Back](sql.md)

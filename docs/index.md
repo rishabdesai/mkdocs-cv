@@ -52,6 +52,12 @@ Jump directly to topic-based quick guides and references 👇
   Handy developer utilities and productivity shortcuts.  
   [:material-arrow-right: Open](/devtools/tools/usefultools/)
 
+- :material-robot: **AI**  
+  Core concepts, essential tools, and fundamental techniques in Artificial Intelligence.  
+  [:material-arrow-right: Open](/devtools/cheatsheet/genai/genai/)  
+
+   
+
 </div>
 
 

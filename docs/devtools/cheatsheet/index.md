@@ -48,4 +48,12 @@ Welcome to your personal **CheatSheet Knowledge Base** — quick access to your 
   Handy developer utilities and productivity resources.  
   [:material-arrow-right: Open](/devtools/tools/usefultools/)
 
+- :material-robot: **AI**
+  
+  Core concepts, essential tools, and fundamental techniques in Artificial Intelligence.  
+  [:material-arrow-right: Open](/devtools/cheatsheet/genai/genai/)
+
+
+  
+
 </div>

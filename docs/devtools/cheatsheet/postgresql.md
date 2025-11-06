@@ -26,5 +26,10 @@ SELECT datname FROM pg_database;
 \d <table_name>;
 ```
 
+### describe views
+```
+\dv 
+```
+
 
 

@@ -67,6 +67,8 @@ nav:
       - Docker: devtools/cheatsheet/docker.md
       - Kubernetes: devtools/cheatsheet/Kubernetes.md
       - SQL: devtools/cheatsheet/sql.md
+      - AI: devtools/cheatsheet/genai/genai.md
+
   - Tools:
       - Useful Tools: devtools/tools/usefultools.md
 

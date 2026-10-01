@@ -57,7 +57,9 @@ git commit -m "first commit"
 
 7.push the changes to main/master remote branch :
 
-git push -u origin main (or)
+git push -u origin main (or)  
+(The -u sets origin/main as the upstream, so future pushes can simply be: git push)
+
 git push --set-upstream origin main (or)
 
 git push origin HEAD:main
@@ -70,6 +72,7 @@ git push origin HEAD:main
 Pull changes from remote repository to local:
 
 git pull origin master
+
 
 ```
 
@@ -257,6 +260,13 @@ git push origin main –force
 git init
 git add .
 git commit -m "first commit"
+
+To check remote URL origin:
+git remote get-url origin
+
+To change origin URL
+git remote set-url origin (https://github.com/yourID/repo_name.git)
+
 
 git remote add origin https://github.com/UserName/test.git
 

@@ -1,18 +1,16 @@
 site_name: Rishabh Desai
 
-
 theme:
   name: material
-   
-  palette: 
-    
+
+  palette:
     # Palette toggle for light mode
     - scheme: default
       toggle:
-        icon: material/brightness-7 
+        icon: material/brightness-7
         name: Switch to dark mode
       primary: black
-      accent: deep orange 
+      accent: deep orange
 
     # Palette toggle for dark mode
     - scheme: slate
@@ -20,14 +18,11 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
       primary: blue grey
-      accent: indigo  
+      accent: indigo
 
   features:
-    - navigation.tabs: false
-    - navigation.top: false
-    - navigation.footer
-
-  features:
+    # - navigation.tabs: false
+    # - navigation.top: false
     - navigation.tabs
     - navigation.top
     - navigation.footer
@@ -39,7 +34,8 @@ theme:
 
     - content.code.copy
     - content.tabs.link
-    - toc.integrate    
+    - toc.integrate
+
   favicon: assets/images/favicon/favicon-32x32.png
 
 markdown_extensions:
@@ -48,18 +44,20 @@ markdown_extensions:
   - pymdownx.superfences
   - md_in_html
   - attr_list
+
   - pymdownx.tabbed:
       alternate_style: true
+
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  
+        # extra_css:
+        #   - overrides/extra.css
 
-# extra_css:
-#   - overrides/extra.css
 
 nav:
   - Home: index.md
+
   - CheatSheets:
       - index: devtools/cheatsheet/index.md
       - Linux OS: devtools/cheatsheet/linux.md
@@ -71,8 +69,6 @@ nav:
 
   - Tools:
       - Useful Tools: devtools/tools/usefultools.md
-
-
 
 extra:
   social:

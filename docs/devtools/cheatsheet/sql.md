@@ -12,6 +12,7 @@
 - [PostgreSQL specific commands](postgresql.md)
 - [SQL Advance Concepts &  Commands](sql_adv.md)
 - [Window Funciton](sql/sql_window_function.md)
+- [MySQL Commands](sql/mysql.md)
 
  
 ## Basic Commands

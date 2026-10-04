@@ -31,24 +31,24 @@ flush privideges;
 ```
 
 ```sql
-#use a specific database (ex. classword) 
+-- use a specific database (ex. classwork) 
 use classwork;
 
-#show tables
+-- show tables
 show tables;
 
-#create table
+-- create table
 create table students(rollno int, name varchar(20), marks double);
 
-#check table structure
+-- check table structure
 describe students;
 
-#insert records in student table
+-- insert records in student table
 insert into students values(1, "abc", 91.00);
 insert into students values(2, "pqr", 81.00);
 insert into students values(3, "xyz", 71.00);
 
-#display table content
+-- display table content
 select * from students;
 
 ```
@@ -63,28 +63,26 @@ update students set marks=75 where rollno=3;
 update students set name ='aaa' where rollno=1;
 
 update students set marks=marks+5 where marks <=75;
-
-
-
 ```
 
 
 ```sql
-#delete table - to delete one or more rows in a table
+-- delete table - to delete one or more rows in a table
 delete from table students where rollno=1;
 
-#truncate - delete all rows (truncate is faster than delete)
+-- truncate - delete all rows (truncate is faster than delete)
 
 truncate table students;
 
-#drop - delete all rows as well as table structure
+-- drop - delete all rows as well as table structure
 
 drop table students;
 drop database classwork;
 
 ```
 
-
+<details>
+<summary>Click to expand tables - dept, emp</summary>
 
 ```sql
 DROP TABLE IF EXISTS dept;
@@ -124,6 +122,11 @@ INSERT INTO accounts VALUES(4, 'Saving', 3000);
 SELECT * FROM accounts;
 ```
 
+
+</details>
+
+
+
 ```sql
 -- UNION operator is to combien the results of two queries
 -- both queries must have same number of columns
@@ -142,10 +145,174 @@ with rollup;
 
 ```
 
+### Joins
+
+<details>
+<summary>Click to expand tables - depts, emps, addr, meeting, emp_meeting</summary>
 
 ```sql
+DROP TABLE IF EXISTS depts;
+DROP TABLE IF EXISTS emps;
+DROP TABLE IF EXISTS addr; 
+DROP TABLE IF EXISTS meeting;
+DROP TABLE IF EXISTS emp_meeting;
+
+CREATE TABLE depts (deptno INT, dname VARCHAR(20));
+INSERT INTO depts VALUES (10, 'DE');
+INSERT INTO depts VALUES (20, 'QA');
+INSERT INTO depts VALUES (30, 'OP');
+INSERT INTO depts VALUES (40, 'AC');
+
+CREATE TABLE emps (empno INT, ename VARCHAR(20), deptno INT, mgr INT);
+INSERT INTO emps VALUES (1, 'Amar', 10, 4);
+INSERT INTO emps VALUES (2, 'Ram', 10, 3);
+INSERT INTO emps VALUES (3, 'Narang', 20, 4);
+INSERT INTO emps VALUES (4, 'Nitin', 50, 5);
+INSERT INTO emps VALUES (5, 'Samar', 50, NULL);
+
+CREATE TABLE addr(empno INT, tal VARCHAR(20), dist VARCHAR(20));
+INSERT INTO addr VALUES (1, 'kol', 'Kolkata');
+INSERT INTO addr VALUES (2, 'mum', 'Mumbai');
+INSERT INTO addr VALUES (3, 'pun', 'Pune');
+INSERT INTO addr VALUES (4, 'nas', 'Nashik');
+INSERT INTO addr VALUES (5, 'nag', 'Nagpur');
+
+CREATE TABLE meeting (meetno INT, topic VARCHAR(20), venue VARCHAR(20));
+INSERT INTO meeting VALUES (100, 'Scheduling', 'Director Cabin');
+INSERT INTO meeting VALUES (200, 'Annual meet', 'Board Room');
+INSERT INTO meeting VALUES (300, 'App Design', 'Co-director Cabin');
+
+CREATE TABLE emp_meeting (meetno INT, empno INT);
+INSERT INTO emp_meeting VALUES (100, 3);
+INSERT INTO emp_meeting VALUES (100, 4);
+INSERT INTO emp_meeting VALUES (200, 1);
+INSERT INTO emp_meeting VALUES (200, 2);
+INSERT INTO emp_meeting VALUES (200, 3);
+INSERT INTO emp_meeting VALUES (200, 4);
+INSERT INTO emp_meeting VALUES (200, 5);
+INSERT INTO emp_meeting VALUES (300, 1);
+INSERT INTO emp_meeting VALUES (300, 2);
+INSERT INTO emp_meeting VALUES (300, 4);
+
+```
 
 
+</details>
+
+
+
+
+#### cross join 
+- Cartesian Join/ Cross Join:
+- It is a join without a WHERE clause.
+- Every row in driving table(outer table) is combined with each and every row of driven (inner table) table.
+- practical use – payroll printing.
+
+```sql
+select e.ename, d.dname from  emps e
+cross join depts d;
+```
+
+#### Inner join
+- inner join is used to return the rows from both tables that satisfy the join condition using ON.
+- Non matching rows from both tables are skipped
+- If the join condition contains equality check, it is reffered as equi-join, otherwise it is non-equi-join.
+  
+```sql
+
+select e.ename, d.dname from emps e
+inner join depts d on e.deptno = d.deptno
+
+```
+
+#### Outer Join
+
+- a. Left Outer Join: It shows matching rows of both the tables plus non-matching rows of outer table.
+- b. Right Outer Join: It is opposite of Left outer join.
+- c. Full Outer Join: It shows matching rows of both the tables plus non-matching rows of both the tables.
+
+```sql
+-- Left outer join
+select e.ename, d.dname from emps e 
+left outer join depts d 
+on e.deptno = d.deptno
+
+-- right outer join
+select e.ename, d.dname from emps e 
+right outer join depts d 
+on e.deptno = d.deptno
+
+-- same output we can get using left join - swapping table positions in join
+SELECT e.ename, d.dname FROM depts d
+LEFT JOIN emps e ON e.deptno = d.deptno;
+
+-- full outer join (not available in mysql - use set operator - union and union all)
+
+* UNION ALL
+	* duplicated rows are retained.
+* UNION
+	* duplicated rows are omitted.
+
+-- Union all
+(SELECT e.ename, d.dname FROM emps e
+LEFT JOIN depts d ON e.deptno = d.deptno)
+UNION ALL
+(SELECT e.ename, d.dname FROM emps e
+RIGHT JOIN depts d ON e.deptno = d.deptno);
+
+-- union
+(SELECT e.ename, d.dname FROM emps e
+LEFT JOIN depts d ON e.deptno = d.deptno)
+UNION
+(SELECT e.ename, d.dname FROM emps e
+RIGHT JOIN depts d ON e.deptno = d.deptno);
+-- same output as full outer join
+
+```
+#### self join
+- when join is done on same table, then it is know on self join. the both columns in condition belongs to the same table.
+- self join may be inner join or outer join
+
+```sql
+SELECT e.ename, m.ename AS mname FROM emps m
+INNER JOIN emps e ON e.mgr = m.empno;
+
+SELECT e.ename, m.ename AS mname FROM emps m
+RIGHT JOIN emps e ON e.mgr = m.empno;
+
+```
+
+#### USING keyword in Join
+* Specify equi-join condition
+* When joined column names are same in both tables
+* Can be used for inner or outer joins.
+
+```SQL
+SELECT ename, dname FROM emps e
+INNER JOIN depts d USING (deptno);
+-- USING (deptno) ---> ON e.deptno = d.deptno (equi-join)
+-- this can be done only if joined column name is same in both the tables.
+
+SELECT ename, dname FROM emps e
+LEFT OUTER JOIN depts d USING (deptno);
+-- USING (deptno) ---> ON e.deptno = d.deptno (equi-join)
+```
+
+#### Natural Join
+Automatically join two tables on columns whose names are same (in both table) with equality condition.
+
+```SQL
+DESCRIBE emps;
+
+DESCRIBE depts;
+
+SELECT ename, dname FROM emps e
+NATURAL JOIN depts d;
+-- emps e NATURAL JOIN depts d --> INNER JOIN depts d ON e.deptno = d.deptno;
+
+SELECT ename, dname FROM emps e
+NATURAL LEFT JOIN depts d;
+-- emps e NATURAL LEFT JOIN depts d --> LEFT JOIN depts d ON e.deptno = d.deptno;
 ```
 
 

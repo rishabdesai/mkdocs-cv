@@ -314,10 +314,105 @@ SELECT ename, dname FROM emps e
 NATURAL LEFT JOIN depts d;
 -- emps e NATURAL LEFT JOIN depts d --> LEFT JOIN depts d ON e.deptno = d.deptno;
 ```
+### Sub queries
+- sub-query is query within query. 
+- Typically it work with select statements
+- For each row of outer query result, sub-query is executed once.
+
+<details>
+<summary>Click to expand tables for sub-query - dept, emp
+</summary>
+
+```sql
+DROP TABLE IF EXISTS dept;
+DROP TABLE IF EXISTS emp;
+
+CREATE TABLE dept(deptno INT(4), dname VARCHAR(40), loc VARCHAR(40));
+
+INSERT INTO dept VALUES (10,'ACCOUNTING','NEW YORK');
+INSERT INTO dept VALUES (20,'RESEARCH','DALLAS');
+INSERT INTO dept VALUES (30,'SALES','CHICAGO');
+INSERT INTO dept VALUES (40,'OPERATIONS','BOSTON');
+
+CREATE TABLE emp(empno INT(4), ename VARCHAR(40), job VARCHAR(40), mgr INT(4), hire DATE, sal DECIMAL(8,2), comm DECIMAL(8,2), deptno INT(4));
+
+INSERT INTO emp VALUES (7369,'SMITH','CLERK',7902,'1980-12-17',800.00,NULL,20);
+INSERT INTO emp VALUES (7499,'ALLEN','SALESMAN',7698,'1981-02-20',1600.00,300.00,30);
+INSERT INTO emp VALUES (7521,'WARD','SALESMAN',7698,'1981-02-22',1250.00,500.00,30);
+INSERT INTO emp VALUES (7566,'JONES','MANAGER',7839,'1981-04-02',2975.00,NULL,20);
+INSERT INTO emp VALUES (7654,'MARTIN','SALESMAN',7698,'1981-09-28',1250.00,1400.00,30);
+INSERT INTO emp VALUES (7698,'BLAKE','MANAGER',7839,'1981-05-01',2850.00,NULL,30);
+INSERT INTO emp VALUES (7782,'CLARK','MANAGER',7839,'1981-06-09',2450.00,NULL,10);
+INSERT INTO emp VALUES (7788,'SCOTT','ANALYST',7566,'1982-12-09',3000.00,NULL,20);
+INSERT INTO emp VALUES (7839,'KING','PRESIDENT',NULL,'1981-11-17',5000.00,NULL,10);
+INSERT INTO emp VALUES (7844,'TURNER','SALESMAN',7698,'1981-09-08',1500.00,0.00,30);
+INSERT INTO emp VALUES (7876,'ADAMS','CLERK',7788,'1983-01-12',1100.00,NULL,20);
+INSERT INTO emp VALUES (7900,'JAMES','CLERK',7698,'1981-12-03',950.00,NULL,30);
+INSERT INTO emp VALUES (7902,'FORD','ANALYST',7566,'1981-12-03',3000.00,NULL,20);
+INSERT INTO emp VALUES (7934,'MILLER','CLERK',7782,'1982-01-23',1300.00,NULL,10);
+
+```
+
+</details>
+
+
+#### Single row sub-query
+- sub-query returns single row
+
+```sql
+-- find emp with max sal.
+SET @maxsal=(SELECT MAX(sal) FROM emp);
+SELECT * FROM emp WHERE sal = @maxsal;
+
+-- find emp with second highest sal.
+SET @sal2 = (SELECT DISTINCT sal FROM emp ORDER BY sal DESC LIMIT 1,1);
+SELECT * FROM emp WHERE sal = @sal2;
+```
+
+
+```sql
+-- find emp with third highest sal.
+SELECT * FROM emp WHERE sal = (SELECT DISTINCT sal FROM emp ORDER BY sal DESC LIMIT 2,1);
+
+-- find emps having sal more than sal of all saleman
+select * from emp where sal > (select max(sal) from emp where job="SALESMAN")
+
+-- find emp having sal less than sal of any salesman
+select * from emp where sal < (select max(sal) from emp where job="SALESMAN")
+```
+
+### Multi-row sub-query
+- sub-query returns multiple rows
+- usually it is compared in outer query using operators like IN, ANY, ALL
+- IN operator checks for equality with results from sub-queries (like logical OR)
+- ANY operator compares with all the result from sub-queries (like logical OR)
+- ALL operator compares with all the results from sub-queries (like logical AND)
+
+```sql
+-- find emps having sal more than sal of all saleman
+select * from emp where sal > ALL(select sal from emp where job = "SALESMAN")
+
+-- find emp having sal less than sal of any salesman
+select * from emp where sal < ANY(select sal from emp where job = "SALESMAN")
+
+-- Find depts which has at least one emp.
+SELECT * FROM dept WHERE deptno = ANY(SELECT deptno FROM emp);
+-- deptno = 10 OR deptno = 20 OR deptno = 30
+-- ANY operator can be used to check =, !=, >, <, >=, <=
+
+SELECT * FROM dept WHERE deptno IN (SELECT deptno FROM emp);
+-- deptno = 10 OR deptno = 20 OR deptno = 30
+-- IN operator can be used to check "=" (equality) only
+
+-- Find depts which doesn't have any emp.
+SELECT * FROM dept WHERE deptno != ALL(SELECT deptno FROM emp);
+
+SELECT * FROM dept WHERE deptno NOT IN (SELECT deptno FROM emp);
 
 
 
 
+```
 
 
 [:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)

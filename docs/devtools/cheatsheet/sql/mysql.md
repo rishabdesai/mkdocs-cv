@@ -409,10 +409,155 @@ SELECT * FROM dept WHERE deptno != ALL(SELECT deptno FROM emp);
 
 SELECT * FROM dept WHERE deptno NOT IN (SELECT deptno FROM emp);
 
+```
+
+### Derived tables
+--- Derived table is a virtual table returned from a **sub-query in FROM clause** of outer query. This is also referred as **Inline view**.
+
+- advantages: more readable than joins and correlated subqueries, overcome limitations of GROUP BY.
+
+- 
 
 
+
+-- tables used emp
+
+```sql
+-- categorize emps in 2 categories.
+-- poor: sal < 1500
+-- rich: sal > 2500
+-- middle: 1500 <= sal <= 2500
+
+SELECT empno, ename, sal, CASE
+WHEN sal < 1500 THEN 'POOR'
+WHEN sal > 2500 THEN 'RICH'
+ELSE 'MIDDLE'
+END AS category FROM emp;
+
+-- count emps in each category
+SELECT category, COUNT(empno)
+FROM
+(SELECT empno, ename, sal, CASE
+WHEN sal < 1500 THEN 'POOR'
+WHEN sal > 2500 THEN 'RICH'
+ELSE 'MIDDLE'
+END AS category FROM emp) AS emp_cat
+GROUP BY category;
+
+-- create view and use it.
+CREATE VIEW v_empcategory AS
+SELECT empno, ename, sal, CASE
+WHEN sal < 1500 THEN 'POOR'
+WHEN sal > 2500 THEN 'RICH'
+ELSE 'MIDDLE'
+END AS category FROM emp;
+
+SELECT category, COUNT(empno)
+FROM v_empcategory GROUP BY category;
+```
+
+
+
+```sql
+-- count emps in each dept & each category
+SELECT dname, empno, ename, sal, CASE
+WHEN sal < 1500 THEN 'POOR'
+WHEN sal > 2500 THEN 'RICH'
+ELSE 'MIDDLE'
+END AS category FROM emp e
+INNER JOIN dept d ON e.deptno = d.deptno;
+
+SELECT dname, category, COUNT(empno)
+FROM
+(SELECT dname, empno, ename, sal, CASE
+WHEN sal < 1500 THEN 'POOR'
+WHEN sal > 2500 THEN 'RICH'
+ELSE 'MIDDLE'
+END AS category FROM emp e
+INNER JOIN dept d ON e.deptno = d.deptno
+) AS emp_cat
+GROUP BY dname, category;
 
 ```
+
+
+```sql
+-- find max sal of each dept
+SELECT deptno, MAX(sal) FROM emp
+GROUP BY deptno;
+
+-- find emp with max sal in each dept.
+SELECT e.empno, e.ename, e.sal, e.deptno
+FROM emp e
+INNER JOIN
+(SELECT deptno, MAX(sal) mxsal FROM emp
+GROUP BY deptno) AS md
+ON e.deptno = md.deptno
+WHERE e.sal = md.mxsal;
+
+-- for derived table, the alias also can be put at the end of query ex. (deptno, mxsal)
+SELECT e.empno, e.ename, e.sal, e.deptno
+FROM emp e
+INNER JOIN
+(SELECT deptno, MAX(sal) FROM emp
+GROUP BY deptno) AS md (deptno, mxsal)
+ON e.deptno = md.deptno
+WHERE e.sal = md.mxsal;
+
+-- using correlated sub-query 
+-- correlated subquery = innter query is dependent on outer query
+SELECT e.empno, e.ename, e.sal, e.deptno
+FROM emp e 
+WHERE e.sal = (SELECT MAX(sal) FROM emp me WHERE me.deptno = e.deptno);
+```
+
+### Lateral Derived Tables
+
+```sql
+-- display ename, sal & dname using join with derived table.
+SELECT e.ename, e.sal, d.dname FROM emp e
+JOIN LATERAL (SELECT dname FROM dept d WHERE d.deptno = e.deptno) AS d;
+
+```
+
+### Common Table Expressions
+-- CTE is a virtual table returned from a SELECT query
+- it can be used for CRUD operations, creating table or view
+- types - Non recursive CTE, Recursive CTE
+- Applications of CTE - Readable, better organization of large queries, non-reusable view, overcome limitation of GROUP BY, Recursion for hierarchical data.
+
+```sql
+-- find emp with max sal in each dept.
+with md (deptno, mxsal) as
+(SELECT deptno, MAX(sal) FROM emp
+GROUP BY deptno) 
+SELECT e.empno, e.ename, e.sal, e.deptno
+FROM emp e
+INNER JOIN md
+ON e.deptno = md.deptno
+WHERE e.sal = md.mxsal;
+```
+
+
+```sql
+-- find avg of deptwise total sal.
+WITH dept_total AS
+(
+SELECT deptno, SUM(sal) total FROM emp
+GROUP BY deptno
+)
+SELECT AVG(total) FROM dept_total;
+```
+
+
+
+
+
+
+
+
+
+
 
 
 [:material-arrow-left: Back to CheatSheets](/devtools/cheatsheet/)

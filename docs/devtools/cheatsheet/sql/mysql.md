@@ -416,10 +416,6 @@ SELECT * FROM dept WHERE deptno NOT IN (SELECT deptno FROM emp);
 
 - advantages: more readable than joins and correlated subqueries, overcome limitations of GROUP BY.
 
-- 
-
-
-
 -- tables used emp
 
 ```sql

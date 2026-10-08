@@ -543,9 +543,48 @@ SELECT deptno, SUM(sal) total FROM emp
 GROUP BY deptno
 )
 SELECT AVG(total) FROM dept_total;
+
+-- above is similar to (using derived table)
+select avg(total) from 
+(select deptno, sum(sal) total from emp
+group by deptno) as dept_total;
+
 ```
 
 
+```sql
+-- Compare sal of each emp with avg sal in his dept
+-- and avg sal for his job.
+
+-- avg salary in job
+select job, avg(sal) jobAvgSal from emp 
+group by job;
+
+-- avg salary in dept
+select deptno, avg(sal) deptAvgSal from emp
+group by deptno;
+
+-- using derived table
+select ename, e.sal, e.job, e.deptno, jobAvgSal, deptAvgSal
+from emp e
+join(select job, avg(sal) jobAvgSal from emp
+group by job) as ej
+on e.job = ej.job
+join(select deptno, avg(sal) deptAvgSal from emp
+group by deptno) as ed
+on e.deptno = ed.deptno;
+
+
+-- using CTE
+with ej as (select job, avg(sal) jobAvgSal from emp
+group by job),
+ed as (select deptno, avg(sal) deptAvgSal from emp
+group by deptno)
+select ename, e.sal, e.job, e.deptno, jobAvgSal, deptAvgSal
+from emp e 
+join ej on e.job = ej.job
+join ed on e.deptno = ed.deptno;
+```
 
 
 

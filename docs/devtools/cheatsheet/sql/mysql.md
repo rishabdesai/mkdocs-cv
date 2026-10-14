@@ -682,7 +682,7 @@ DENSE_RANK() OVER (PARTITION BY deptno ORDER BY sal) drnk,
 ename, deptno, job, sal FROM emp;
 
 -- in above the window_specification is repeating three times (PARTITION BY deptno ORDER BY sal)
--- use WINDOW to make the query more readable
+-- use WINDOW to make the query more readable using alias
 SELECT
 ROW_NUMBER() OVER (wnd) sr,
 RANK() OVER (wnd) rnk,
@@ -691,9 +691,85 @@ ename, deptno, job, sal FROM emp
 WINDOW wnd AS (PARTITION BY deptno ORDER BY sal);
 
 ```
+- partition: 
+  - breaks up rows into partitions/groups (logical)
+  - rows can be partitioned by one or more columns/expressions
+  - window function is performed within the patition and re-initialized with corssing partition boundary.
+- Order:
+  - sorts the row within a partition in ASC or DESC order
+  - partition and order is supported by all window functions
+  - ORDER BY is useful only for order-sensitive functions e.g. RANK() ect.
+- FRAME:
+  - Frame is subset of current partition
+  - frame is defined w.r.t. current row and is moving within a partition depending on current row
+  - The default frame is RANGE BETWEEN UNVOUNDED PRECEDING AND CURRENT ROW.
+  
+```sql
+-- FIRST_VALUE
+SELECT
+ROW_NUMBER() OVER (wnd) sr,
+ename, deptno, sal,
+FIRST_VALUE(ename) OVER (wnd) f_ename
+FROM emp
+WINDOW wnd AS (PARTITION BY deptno);
+
+-- FIRST_VALUE based on ORDER BY sal
+SELECT
+ROW_NUMBER() OVER (wnd) sr,
+ename, deptno, sal,
+FIRST_VALUE(ename) OVER (wnd) f_ename
+FROM emp
+WINDOW wnd AS (PARTITION BY deptno ORDER BY sal);
 
 
+-- LAST VALUE
+SELECT
+ROW_NUMBER() OVER (wnd) sr,
+ename, deptno, sal,
+FIRST_VALUE(ename) OVER (wnd) f_ename
+FROM emp
+WINDOW wnd AS (PARTITION BY deptno ORDER BY sal DESC);
 
+SELECT
+ROW_NUMBER() OVER (wnd) sr,
+ename, deptno, sal,
+FIRST_VALUE(ename) OVER (wnd) f_ename,
+LAST_VALUE(ename) OVER (wnd) l_ename -- unexpected
+FROM emp
+WINDOW wnd AS (PARTITION BY deptno ORDER BY sal);
+```
+
+```SQL
+-- LEAD
+-- value of below/next row is shown in current row
+-- Show current sal and next sal for current row
+SELECT
+ROW_NUMBER() OVER (wnd) sr,
+ename, deptno, sal,
+LEAD(sal) OVER (wnd) next_sal
+FROM emp
+WINDOW wnd AS (ORDER BY sal ASC);
+
+-- show diff of current sal and next sal
+SELECT
+ROW_NUMBER() OVER (wnd) sr,
+ename, deptno, sal,
+LEAD(sal) OVER (wnd) next_sal,
+LEAD(sal) OVER (wnd) - sal AS diff
+FROM emp
+WINDOW wnd AS (ORDER BY sal ASC);
+
+- LAG
+-- opposite of LEAD fuction
+-- value of above/previous row is shown in current row
+
+SELECT
+ROW_NUMBER() OVER (wnd) sr,
+ename, deptno, sal,
+LAG(sal) OVER (wnd) prev_sal
+FROM emp
+WINDOW wnd AS (ORDER BY sal ASC);
+```
 
 
 

@@ -586,6 +586,112 @@ join ej on e.job = ej.job
 join ed on e.deptno = ed.deptno;
 ```
 
+### Window Functions
+  
+- Window function added in SQL-2003, Supported in Mysql 8.0+
+- used to solve analytical problems (SELECT queries)
+- As Aggregate function operates on group of rows and generate summary (fewer rows), the window function also work of group of rows, but not reduce number of wow.
+- Unlike grouping, the windowing retain the other columns.
+- Windowing enable dividng data into multiple partitions, sorting each partition and perform window operations on each row.
+- window function = functions used with OVER clause
+- window functions are of two types 
+  - Aggregate functions
+    - cab be used with or without windowing
+    - SUM(), MIN(), MAX(), AVG(), COUNT(), STDEV(), ...
+  - Non-Aggregate functions
+    - can be useed with windowing only
+    - ROW_NUMBER(), RANK(), DENSE_RANK(), FIRST_VALUE(), LAST_VALUE(), LEAD(), LAG(), ...
+- Syntax: 
+  - SELECT window_funtion(...) OVER (window), col1, col2 FROM table.
+- window_function(...) OVER(window_specification)
+  - window_specificaiton are
+  	- PARTITION BY columns
+  	- ORDER BY columns ASC | DESC
+  	- ROWS | RANGE BETWEEN frame start AND frame end
+    
+
+```sql
+SELECT ename, job, deptno, sal, SUM(sal) FROM emp
+GROUP BY deptno;
+-- error: only those columns can be selected which are grouped
+
+-- display emp info, sal and total sal of all emps. 
+SELECT ename, job, deptno, sal,
+SUM(sal) OVER () total
+FROM emp;
+
+-- display emp info, sal and total sal of that dept. 
+SELECT ename, job, deptno, sal,
+SUM(sal) OVER (PARTITION BY deptno) total
+FROM emp;
+```
+#### Non-aggregate window functions
+- ROW_NUMBER(), RANK(), DENSE_RANK(), FIRST_VALUE(), LAST_VALUE(), LEAD(), LAG(), ...
+```SQL
+SELECT ename, deptno, sal FROM emp;
+
+-- show serial number for all emp
+SELECT
+ROW_NUMBER() OVER () sr,
+ename, deptno, job, sal FROM emp;
+
+-- show serial number for all emp & partition by deptno
+SELECT
+ROW_NUMBER() OVER (PARTITION BY deptno) sr,
+ename, deptno, job, sal FROM emp;
+
+-- show serial number for all emp & partition by job
+SELECT
+ROW_NUMBER() OVER (PARTITION BY job) sr,
+ename, deptno, job, sal FROM emp;
+
+-- ranking based on sal
+SELECT
+RANK() OVER (ORDER BY sal) rnk,
+ename, deptno, job, sal FROM emp;
+
+-- ranking based on sal, partition by deptno
+SELECT
+RANK() OVER (PARTITION BY deptno ORDER BY sal) rnk,
+ename, deptno, job, sal FROM emp;
+
+-- RANK() skips subsequent numbers after ties (e.g., 1, 1, 3), whereas DENSE_RANK() assigns consecutive numbers without gaps (e.g., 1, 1, 2)
+SELECT
+DENSE_RANK() OVER (ORDER BY sal) drnk,
+ename, deptno, job, sal FROM emp;
+
+SELECT
+ROW_NUMBER() OVER (ORDER BY sal) sr,
+RANK() OVER (ORDER BY sal) rnk,
+DENSE_RANK() OVER (ORDER BY sal) drnk,
+ename, deptno, job, sal FROM emp;
+
+-- for rank and dense_rank, some sort of odering is required
+-- belwo will return 1 for rank and dense rank as no order by clause is added
+SELECT
+ROW_NUMBER() OVER (PARTITION BY deptno) sr,
+RANK() OVER (PARTITION BY deptno) rnk,
+DENSE_RANK() OVER (PARTITION BY deptno) drnk,
+ename, deptno, job, sal FROM emp;
+
+-- get rank using partition of deptno
+SELECT
+ROW_NUMBER() OVER (PARTITION BY deptno ORDER BY sal) sr,
+RANK() OVER (PARTITION BY deptno ORDER BY sal) rnk,
+DENSE_RANK() OVER (PARTITION BY deptno ORDER BY sal) drnk,
+ename, deptno, job, sal FROM emp;
+
+-- in above the window_specification is repeating three times (PARTITION BY deptno ORDER BY sal)
+-- use WINDOW to make the query more readable
+SELECT
+ROW_NUMBER() OVER (wnd) sr,
+RANK() OVER (wnd) rnk,
+DENSE_RANK() OVER (wnd) drnk,
+ename, deptno, job, sal FROM emp
+WINDOW wnd AS (PARTITION BY deptno ORDER BY sal);
+
+```
+
 
 
 
